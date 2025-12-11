@@ -1,0 +1,143 @@
+---
+title: Changelog
+description: Track updates, new features, and improvements in zapRF to stay informed about the latest enhancements.
+---
+
+## Overview
+
+zapRF releases deliver AI-powered optimizations for your MMIC power amplifier designs. You receive regular updates that enhance layout generation, simulation accuracy, and integration workflows. Review the latest changes below to upgrade effectively and leverage new capabilities.
+
+<Callout kind="info">
+  Bookmark this page and check back weekly. Subscribe to notifications via your account dashboard for instant alerts on major releases.
+</Callout>
+
+## Recent Releases
+
+<Update label="2024-10-15" description="v1.2.0" tags={["feature", "improvement"]}>
+
+## New Features
+
+- Added multi-stage MMIC support for cascaded power amplifier designs.
+- Introduced real-time simulation preview during layout optimization.
+
+## Improvements
+
+- Reduced layout generation time by 40% with enhanced neural network models.
+- Improved export formats including OASIS and updated GDSII compatibility.
+
+## Bug Fixes
+
+- Fixed impedance matching errors in high-frequency bands (`>40GHz`).
+- Resolved crash during batch processing of large design libraries.
+
+</Update>
+
+<Update label="2024-09-20" description="v1.1.0" tags={["feature", "bugfix"]}>
+
+## New Features
+
+- Integrated Python SDK for programmatic design workflows.
+- Added customizable constraint profiles for thermal and electromagnetic rules.
+
+## Improvements
+
+- Enhanced UI with drag-and-drop component placement.
+- Optimized memory usage for designs with `>1000` elements.
+
+## Bug Fixes
+
+- Corrected layout symmetry issues in balanced amplifiers.
+- Fixed API response parsing for cloud-hosted simulations.
+
+</Update>
+
+<Update label="2024-08-10" description="v1.0.0" tags={["breaking", "feature"]}>
+
+## Initial Release
+
+- Core AI layout optimizer for single-stage MMIC power amplifiers.
+- Full simulation integration with Keysight ADS and Ansys HFSS.
+- Web-based dashboard for design review and export.
+
+## Breaking Changes
+
+- Initial schema update requires re-uploading legacy design files.
+
+</Update>
+
+## Upgrading zapRF
+
+Follow these steps to update your installation and migrate designs seamlessly.
+
+<Steps>
+  <Step title="Check Current Version" icon="package">
+    Run the version check command in your terminal.
+
+    <CodeGroup tabs="Python,Node.js">
+      ```python
+      import zaprf
+      print(zaprf.__version__)
+      ```
+      ```javascript
+      const zaprf = require('zaprf-sdk');
+      console.log(zaprf.version);
+      ```
+    </CodeGroup>
+  </Step>
+  <Step title="Update Package" icon="download">
+    Use your package manager to install the latest version.
+
+    <Tabs>
+      <Tab title="pip" icon="python">
+        ```bash
+        pip install --upgrade zaprf-sdk
+        ```
+      </Tab>
+      <Tab title="npm" icon="nodejs">
+        ```bash
+        npm update zaprf-sdk
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="Validate Designs" icon="check-circle">
+    Re-run simulations on active projects to confirm compatibility.
+
+    <Callout kind="tip">
+      Backup your design library before upgrading. Use `zaprf export --all` for safe archiving.
+    </Callout>
+  </Step>
+</Steps>
+
+## Upcoming Roadmap
+
+Explore planned enhancements to guide your RF design strategy.
+
+<Columns cols={3}>
+  <Card title="AI Multi-Objective Optimization" icon="zap" href="/docs/ai-optimizer">
+    Balance power, efficiency, and size automatically in v1.3.0.
+  </Card>
+  <Card title="Collaborative Design Workspace" icon="users" href="/docs/collaboration">
+    Real-time team editing coming in Q1 2025.
+  </Card>
+  <Card title="Advanced Material Library" icon="database" href="/docs/materials">
+    Expanded support for GaN and emerging substrates.
+  </Card>
+</Columns>
+
+<Expandable title="Detailed Migration Guide" default-open="false">
+  For v1.0 to v1.2 migrations, update your config files:
+
+  ```json
+  {
+    "optimizer": {
+      "version": "v1.2",
+      "constraints": {
+        "frequency": { "min": 1, "max": 100 }
+      }
+    }
+  }
+  ```
+
+  Test with a sample design to verify outputs.
+</Expandable>

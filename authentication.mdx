@@ -1,0 +1,124 @@
+---
+title: Authentication and Account Setup
+description: Learn how to create an account, log in, and manage your zapRF credentials to securely access the platform.
+---
+
+## Overview
+
+zapRF requires secure authentication to access its AI-driven MMIC power amplifier design tools. You create an account to get started, enable two-factor authentication for protection, and generate API keys for programmatic access. Follow these steps to set up and manage your credentials securely.
+
+## Sign Up for a zapRF Account
+
+Begin by creating your account on the zapRF platform.
+
+<Steps>
+  <Step title="Visit the Sign-Up Page" icon="user-plus">
+    Navigate to `https://app.zaprf.com/signup` in your browser.
+  </Step>
+  <Step title="Enter Your Details" icon="edit-3">
+    Provide your email address, full name, and a strong password. Use at least 12 characters with uppercase, lowercase, numbers, and symbols.
+  </Step>
+  <Step title="Verify Email" icon="mail">
+    Check your inbox for a verification email from zapRF and click the link to activate your account.
+  </Step>
+  <Step title="Complete Onboarding" icon="check-circle">
+    Log in and complete the quick onboarding survey to unlock full platform access.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Choose a unique password and enable two-factor authentication immediately after sign-up for enhanced security.
+</Callout>
+
+## Log In to zapRF
+
+Access your dashboard securely with these login methods.
+
+<Tabs>
+  <Tab title="Web Browser" icon="globe">
+    Go to `https://app.zaprf.com/login`, enter your email and password, then approve the two-factor authentication code from your authenticator app.
+  </Tab>
+  <Tab title="CLI Tool" icon="terminal">
+    ```bash
+    zaprf login --email your-email@company.com
+    ```
+    Enter your password and 2FA code when prompted.
+  </Tab>
+</Tabs>
+
+<Callout kind="info">
+  zapRF enforces two-factor authentication (2FA) for all accounts. Download an app like Authy or Google Authenticator to scan the QR code in your account settings.
+</Callout>
+
+## Generate API Keys for Integrations
+
+Use API keys to authenticate requests to zapRF's design automation endpoints. Generate keys from your account dashboard under **Settings > API Access**.
+
+<CodeGroup tabs="JavaScript,Python,cURL">
+  ```javascript
+  const response = await fetch('https://api.zaprf.com/v1/designs', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer YOUR_API_KEY`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      mmicSpec: { frequency: '5GHz', power: '20dBm' }
+    })
+  });
+  ```
+  ```python
+  import requests
+
+  headers = {
+      'Authorization': 'Bearer YOUR_API_KEY',
+      'Content-Type': 'application/json'
+  }
+  response = requests.post(
+      'https://api.zaprf.com/v1/designs',
+      headers=headers,
+      json={'mmicSpec': {'frequency': '5GHz', 'power': '20dBm'}}
+  )
+  ```
+  ```bash
+  curl -X POST https://api.zaprf.com/v1/designs \
+    -H "Authorization: Bearer YOUR_API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{"mmicSpec": {"frequency": "5GHz", "power": "20dBm"}}'
+  ```
+</CodeGroup>
+
+<ParamField header="Authorization" param-type="string" required="true">
+  Bearer token format: `Bearer YOUR_API_KEY`. Rotate keys regularly.
+</ParamField>
+
+## Account Management and Security
+
+Manage your account settings to maintain security.
+
+<ExpandableGroup>
+  <Expandable title="Update Password" default-open="true">
+    Go to **Settings > Security**, enter your current password, then set a new one. zapRF checks for strength and history to prevent reuse.
+  </Expandable>
+  <Expandable title="Regenerate API Keys">
+    In **API Access**, click **Generate New Key** to invalidate old keys. Store them securely—do not commit to version control.
+  </Expandable>
+  <Expandable title="Security Best Practices">
+    - Enable 2FA and use app-based codes, not SMS.
+    - Review active sessions in **Settings > Sessions** and log out unused devices.
+    - Use role-based access for teams: admin, designer, viewer.
+    - Monitor audit logs for suspicious activity.
+  </Expandable>
+</ExpandableGroup>
+
+<Columns cols={3}>
+  <Card title="Team Invites" icon="users" href="/docs/teams">
+    Add collaborators with granular permissions.
+  </Card>
+  <Card title="Billing" icon="credit-card" href="/docs/billing">
+    Manage subscriptions and usage quotas.
+  </Card>
+  <Card title="First Design" icon="zap" href="/docs/quickstart">
+    Generate your first MMIC layout now.
+  </Card>
+</Columns>
